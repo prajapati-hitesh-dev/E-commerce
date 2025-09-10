@@ -1,0 +1,101 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom styles for the Local First application */
+@layer components {
+    .btn-primary {
+        @apply px-6 py-3 bg-gradient-to-r from-orange-500 to-green-600 text-white rounded-lg font-semibold hover:from-orange-600 hover:to-green-700 transition-all transform hover:scale-105;
+    }
+    
+    .btn-secondary {
+        @apply px-6 py-3 bg-transparent border-2 border-orange-500 text-orange-500 rounded-lg font-semibold hover:bg-orange-500 hover:text-white transition-all;
+    }
+    
+    .card {
+        @apply bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105;
+    }
+    
+    .input-field {
+        @apply w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent outline-none;
+    }
+}
+
+/* Custom animations */
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.animate-spin-slow {
+    animation: spin 3s linear infinite;
+}
+
+/* Hide scrollbar for horizontal nav where supported */
+.scrollbar-hide::-webkit-scrollbar {
+    display: none;
+}
+.scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+/* Prevent page from shifting horizontally */
+html, body {
+    overflow-x: hidden;
+}
+
+/* Bottom nav slider behavior on mobile */
+.bottom-slider {
+    overflow-x: auto;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x proximity;
+    touch-action: pan-x;
+    overscroll-behavior-x: contain;
+}
+.bottom-slider::-webkit-scrollbar {
+    display: none;
+}
+.bottom-item {
+    scroll-snap-align: start;
+    flex: 0 0 auto;
+    min-width: 72px;
+}
+
+/* Toast notifications */
+.toast {
+    @apply fixed top-4 right-4 z-50 p-4 rounded-lg shadow-lg transform transition-all duration-300;
+}
+
+.toast-success {
+    @apply bg-green-500 text-white;
+}
+
+.toast-error {
+    @apply bg-red-500 text-white;
+}
+
+.toast-info {
+    @apply bg-blue-500 text-white;
+}
+
+/* Loading states */
+.loading {
+    @apply opacity-50 pointer-events-none;
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+    .mobile-hidden {
+        display: none;
+    }
+    
+    .mobile-full {
+        width: 100%;
+    }
+}
