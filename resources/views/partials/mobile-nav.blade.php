@@ -1,6 +1,6 @@
 <!-- Bottom Navigation (visible on mobile and desktop) -->
-<div class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 z-40">
-    <div class="flex py-2 px-2 gap-3 bottom-slider md:overflow-visible md:whitespace-normal md:gap-0 md:justify-around">
+<div class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 z-40 overflow-hidden">
+    <div class="flex py-2 px-2 gap-3 bottom-slider scrollbar-hide -mx-2 md:mx-0 md:overflow-visible md:whitespace-normal md:gap-0 md:justify-around">
         <a href="{{ route('home') }}" class="flex flex-col items-center py-2 px-3 text-gray-600 hover:text-orange-600 transition-colors bottom-item md:min-w-0 md:flex-shrink">
             <svg class="w-6 h-6 mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>

@@ -13,6 +13,13 @@
 
     <!-- Tailwind CSS via CDN (fallback to avoid Vite) -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Minimal CSS to support mobile bottom nav scrolling -->
+    <style>
+        .scrollbar-hide::-webkit-scrollbar { display: none; }
+        .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+        .bottom-slider { overflow-x: auto; -webkit-overflow-scrolling: touch; scroll-snap-type: x proximity; touch-action: pan-x; overscroll-behavior-x: contain; }
+        .bottom-item { scroll-snap-align: start; flex: 0 0 auto; min-width: 72px; }
+    </style>
     <!-- App script without Vite -->
     <script defer src="/js/app.js"></script>
 </head>

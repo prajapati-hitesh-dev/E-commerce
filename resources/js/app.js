@@ -202,23 +202,29 @@ function hideSpinWheel() {
 
 function initSpinWheel() {
     const prizes = [
-        { label: '10% OFF', color: 'bg-red-500', value: 10 },
-        { label: '₹50 OFF', color: 'bg-blue-500', value: 50 },
-        { label: '15% OFF', color: 'bg-green-500', value: 15 },
-        { label: 'Free Shipping', color: 'bg-yellow-500', value: 'shipping' },
-        { label: '5% OFF', color: 'bg-purple-500', value: 5 },
-        { label: '₹100 OFF', color: 'bg-orange-500', value: 100 },
-        { label: '20% OFF', color: 'bg-pink-500', value: 20 },
-        { label: 'Try Again', color: 'bg-gray-500', value: 0 }
+        { label: '10% OFF', color: '#ef4444', value: 10 },      // red-500
+        { label: '₹50 OFF', color: '#3b82f6', value: 50 },      // blue-500
+        { label: '15% OFF', color: '#22c55e', value: 15 },      // green-500
+        { label: 'Free Shipping', color: '#eab308', value: 'shipping' }, // yellow-500
+        { label: '5% OFF', color: '#a855f7', value: 5 },        // purple-500
+        { label: '₹100 OFF', color: '#f97316', value: 100 },    // orange-500
+        { label: '20% OFF', color: '#ec4899', value: 20 },      // pink-500
+        { label: 'Try Again', color: '#6b7280', value: 0 }      // gray-500
     ];
-    
+
     const wheel = document.getElementById('wheel');
-    wheel.innerHTML = prizes.map((prize, index) => `
-        <div class="absolute w-full h-full ${prize.color} flex items-center justify-center text-white font-bold text-sm" 
-             style="transform: rotate(${index * 45}deg); clip-path: polygon(50% 50%, 0% 0%, 29.3% 29.3%)">
-            <span class="transform -rotate-22.5">${prize.label}</span>
-        </div>
-    `).join('');
+    wheel.innerHTML = prizes.map((prize, index) => {
+        const rotation = index * 45;
+        const textRotation = -22.5; // centers text in the 45deg slice
+        return `
+            <div class=\"absolute inset-0\" style=\"transform: rotate(${rotation}deg);\">
+                <div class=\"absolute inset-0 flex items-center justify-center font-bold text-[11px] md:text-sm\"
+                     style=\"clip-path: polygon(50% 50%, 0% 0%, 29.3% 29.3%); background-color: ${prize.color}; color: #ffffff;\">
+                    <span class=\"transform\" style=\"transform: rotate(${textRotation}deg); white-space: nowrap;\">${prize.label}</span>
+                </div>
+            </div>
+        `;
+    }).join('');
 }
 
 function spinWheel() {
@@ -257,26 +263,37 @@ function spinWheel() {
 function showToast(message, type = 'info') {
     const container = document.getElementById('toast-container');
     const toast = document.createElement('div');
-    
-    toast.className = `toast toast-${type} transform translate-x-full`;
+
+    const colorMap = {
+        success: { bg: '#16a34a', border: '#14532d' }, // green-600, emerald-900
+        error: { bg: '#dc2626', border: '#7f1d1d' },   // red-600, red-900
+        warning: { bg: '#d97706', border: '#78350f' }, // amber-600, amber-900
+        info: { bg: '#2563eb', border: '#1e3a8a' }     // blue-600, blue-900
+    };
+    const colors = colorMap[type] || colorMap.info;
+
+    toast.className = 'transform translate-x-full text-white rounded-lg shadow-lg p-4 border-l-4';
+    toast.style.backgroundColor = colors.bg;
+    toast.style.borderLeftColor = colors.border;
+
     toast.innerHTML = `
-        <div class="flex items-center justify-between">
+        <div class="flex items-center justify-between gap-6">
             <span>${message}</span>
-            <button onclick="this.parentElement.parentElement.remove()" class="ml-4 text-white hover:text-gray-200">
+            <button onclick="this.parentElement.parentElement.remove()" class="ml-4 text-white/90 hover:text-white">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
                 </svg>
             </button>
         </div>
     `;
-    
+
     container.appendChild(toast);
-    
+
     // Animate in
     setTimeout(() => {
         toast.classList.remove('translate-x-full');
-    }, 100);
-    
+    }, 50);
+
     // Auto remove after 5 seconds
     setTimeout(() => {
         toast.classList.add('translate-x-full');
