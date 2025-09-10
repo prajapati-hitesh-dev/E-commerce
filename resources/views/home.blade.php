@@ -3,7 +3,7 @@
 @section('content')
 <div>
     <!-- Hero Section -->
-    <section class="bg-gradient-to-r from-orange-400 via-red-400 to-green-600 text-white">
+    <section class="bg-gradient-to-r mt-20 from-orange-400 via-red-400 to-green-600 text-white">
         <div class="max-w-7xl mx-auto px-4 py-20 text-center">
             <h1 class="text-5xl md:text-6xl font-bold mb-6 leading-tight">
                 Support Local,
